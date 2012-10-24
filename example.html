@@ -1,0 +1,64 @@
+<html>
+	<script>
+		var WIDTH=10;
+		var HEIGHT=10;
+		var sum;
+		var t = function(g,x,y,w,h){v=g[x][y];s=0;for(i=x-1;i<x+2;i++)for(k=y-1;k<y+2;k++)if(i>=0&&i<w&&k>=0&&k<h)s+=g[i][k];return s==3||v&&s==4;}
+		
+		function main(){
+			space = new Array(HEIGHT);
+			for(i=0;i<HEIGHT;i++)
+				space[i]=new Array(WIDTH)
+			for(h=0;h<HEIGHT;h++){
+				for(w=0;w<WIDTH;w++){
+					space[h][w]=parseInt((Math.random() * 10)%2);	
+				}
+			}
+			run(space);
+		}
+		
+		function run(s){
+			print(s)
+			new_space = new Array(WIDTH);
+			for(h=0;h<HEIGHT;h++){
+				new_space[h] = new Array(HEIGHT);
+				for(w=0;w<WIDTH;w++){
+					new_space[h][w]=t(s,h,w,WIDTH,HEIGHT);	
+				}
+			}
+			setTimeout("run(new_space)",100);
+		}	
+
+		function print(matrix){
+			var text="<table ><tr>";
+			for(h=0;h<HEIGHT;h++){
+				for(w=0;w<WIDTH;w++){
+					text+=" ";
+					text+=(matrix[h][w] == 0)? "<td> &nbsp;</td>":"<td class='alive'>&nbsp;</td>" ;	
+				}
+				text+="</tr><tr>";
+			}
+			document.getElementById("output").innerHTML = text+"</table>";	
+		}
+		
+	</script>
+	<style>
+		table {
+			border-collapse:collapse;
+		}
+		tr {
+			font-size:3px;			
+		}
+		td {
+			border:1px solid black;
+		}
+		td.alive{
+			background:black;
+		}
+	</style>
+	<body onload="main()">
+		<div id="output">
+		<br>
+		</div>	
+	</body>
+</html>
