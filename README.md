@@ -1,5 +1,5 @@
 Conway's Game of Life in 132 bytes of javascript
-*****
+=====
 An implementation of Conway's Game of Life in only 132 bytes of javascript code.
 This project was born after i saw the works on www.140byt.es
 
